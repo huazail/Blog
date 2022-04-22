@@ -1,0 +1,91 @@
+window.$docsify = {
+  name: "<p>谷雨</p>",
+  nameLink: 'https://notebook.js.org/',
+  //repo: 'wugenqiang/NoteBook',
+  themeColor: '#007be8', // 主题颜色
+  //loadSidebar: true,//_sidebar.md如果为真，则从_sidebar.md文件加载边栏，否则从指定的路径加载
+  auto2top: true, //当路线改变时,滚动到屏幕的顶部
+  loadNavbar: true, //_navbar.md如果为真，则从_navbar.md文件加载navbar ，否则从指定的路径加载
+  loadNavbar: './nav.md', //_navbar.md如果为真，则从_navbar.md文件加载navbar ，否则从指定的路径加载
+
+  mergeNavbar: true, //Navbar将在小屏幕上与侧边栏合并
+  executeScript: true, //执行页面上的脚本。只解析第一个脚本标记（演示）。如果存在Vue，则默认开
+  maxLevel: 6, //最大的内容表级别
+  //subMaxLevel: 6,//在自定义边栏中添加目录（TOC)
+  externalLinkTarget: '_blank', //外链打开方式：_blank表示在新标签页中打开
+  coverpage: true,
+  onlyCover: true,
+  topMargin: 60, //调整top
+  //executeScript: true,//执行页面上的脚本，仅解析第一个脚本标签
+  search: {
+    paths: 'auto',
+    placeholder: '🔍 搜索',
+    noData: '😒 没有数据',
+    // Headline depth, 1 - 6
+    depth: 6,
+    maxAge: 86400000, // 过期时间，单位毫秒，默认一天
+  }, //添加搜索框
+  // 谷歌分析 SEO
+  ga: 'UA-164658031-2',
+
+  footer: {
+    copy: '<div class = "over" >完结</div><br/><span>我能想到最浪漫的事，就是我喝咖啡你付钱~😆😏 ❤️ 打赏地址：<a href="https://wugenqiang.js.org/sponsor/" target="_blank">https://wugenqiang.js.org/sponsor/</a></span><iframe src="https://wugenqiang.js.org/sponsor/" style="overflow-x:hidden;overflow-y:hidden; min-height:240px; width:100%;"  frameborder="0" scrolling="no"></iframe><br/><span id="sitetime"></span><br/><span>Copyright &copy; 2019 - 至今</span>',
+    auth: ' <a href="https://wugenqiang.github.io/" target="_blank">🏷️ EnjoyToShare Blog</a> <span> 一个人可以走的很快，但一群人才能走的更远！</span>',
+    pre: '<hr/>',
+    style: 'text-align: left;',
+  }, //添加页脚
+
+  markdown: {
+    renderer: {
+      code: function (code, lang, base = null) {
+
+        if (lang === "dot") {
+          return (
+            '<div class="viz">' + Viz(code, "SVG") + '</div>'
+          );
+        }
+
+        var pdf_renderer = function (code, lang, verify) {
+          function unique_id_generator() {
+            function rand_gen() {
+              return Math.floor((Math.random() + 1) * 65536).toString(16).substring(1);
+            }
+            return rand_gen() + rand_gen() + '-' + rand_gen() + '-' + rand_gen() + '-' + rand_gen() + '-' +
+              rand_gen() + rand_gen() + rand_gen();
+          }
+          if (lang && !lang.localeCompare('pdf', 'en', {
+              sensitivity: 'base'
+            })) {
+            if (verify) {
+              return true;
+            } else {
+              var divId = "markdown_code_pdf_container_" + unique_id_generator().toString();
+              var container_list = new Array();
+              if (localStorage.getItem('pdf_container_list')) {
+                container_list = JSON.parse(localStorage.getItem('pdf_container_list'));
+              }
+              container_list.push({
+                "pdf_location": code,
+                "div_id": divId
+              });
+              localStorage.setItem('pdf_container_list', JSON.stringify(container_list));
+              return (
+                '<div style="margin-top:' + PDF_MARGIN_TOP + '; margin-bottom:' + PDF_MARGIN_BOTTOM +
+                ';" id="' + divId + '">' +
+                '<a href="' + code + '"> Link </a> to ' + code +
+                '</div>'
+              );
+            }
+          }
+          return false;
+        }
+        if (pdf_renderer(code, lang, true)) {
+          return pdf_renderer(code, lang, false);
+        }
+        //return this.origin.code.apply(this, arguments);
+        return (base ? base : this.origin.code.apply(this, arguments));
+      }
+    }
+  },
+
+}
