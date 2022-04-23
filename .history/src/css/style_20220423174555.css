@@ -12,9 +12,7 @@
   width: calc(100% - 325px);
   background-color: #fff;
   height: 70px;
-  line-height:70px;
   /* border-bottom: 1px solid #eee; */
-  background:transparent
 }
 
 /*.github-corner{

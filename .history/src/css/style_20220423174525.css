@@ -6,15 +6,14 @@
 .app-nav {
   position: fixed;
   top: 0;
-  right: 0;
   margin: 0;
+  /*padding: 10px 50px 10px 0;*/
+  padding: 10px 0 10px 0;
   /*上、右、下、左*/
   width: calc(100% - 325px);
   background-color: #fff;
   height: 70px;
-  line-height:70px;
   /* border-bottom: 1px solid #eee; */
-  background:transparent
 }
 
 /*.github-corner{

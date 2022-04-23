@@ -11,10 +11,9 @@
   /*上、右、下、左*/
   width: calc(100% - 325px);
   background-color: #fff;
-  height: 70px;
-  line-height:70px;
+  height: 60px;
   /* border-bottom: 1px solid #eee; */
-  background:transparent
+  border: 1px solid red;
 }
 
 /*.github-corner{
