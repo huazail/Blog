@@ -7,7 +7,7 @@ window.$docsify = {
   auto2top: true, //当路线改变时,滚动到屏幕的顶部
   loadNavbar: true, //_navbar.md如果为真，则从_navbar.md文件加载navbar ，否则从指定的路径加载
   loadNavbar: './nav.md',
-  mergeNavbar: false, //Navbar将在小屏幕上与侧边栏合并
+  mergeNavbar: true, //Navbar将在小屏幕上与侧边栏合并
   executeScript: true, //执行页面上的脚本。只解析第一个脚本标记（演示）。如果存在Vue，则默认开
   maxLevel: 6, //最大的内容表级别
   //subMaxLevel: 6,//在自定义边栏中添加目录（TOC)
