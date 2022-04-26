@@ -35,7 +35,13 @@ a {
   text-decoration: none;
   font-weight: 600;
 }
-
+.bg_title{
+  display: block;
+  font-size: 40px;
+  color: #858585;
+  font-weight: 500;
+  font-family:'YouYuan'
+}
 .btn {
   appearance: none;
   outline: 0;
@@ -61,7 +67,7 @@ a {
   background-color: #1A1D2C;
   border-radius: 40px;
   transition: all 0.3s ease-in;
-  margin:  20px;
+  margin:  40px 20px;
 }
 .btn_text {
   position: relative;
