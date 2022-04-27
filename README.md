@@ -5,6 +5,10 @@
 
 # CSS3
 # javaScript基础
+- [javaScript概述](file/jsBasis/overview.md)
+- [变量和常量](file/jsBasis/var.md)
+- [javaScript数据类型](file/jsBasis/dataType.md.md)
+
 # JsApi
 
 
